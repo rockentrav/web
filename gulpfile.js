@@ -1,23 +1,16 @@
-const gulp = require('gulp');
+const gulp = require("gulp");
+const browserSync = require("browser-sync").create();
 
-gulp.task('default',function(callback)
-{
-console.log("Hello, from Gulp!")
-callback();
+gulp.task("server", function(){
+  browserSync.init({
+    server: {
+      baseDir: "./src/"
+    }
+  });
 });
 
-gulp.task('hello',function(callback)
-{
-console.log("Hello, from Gulp!")
-callback();
+gulp.task("watch", function() {
+  gulp.watch("./src/*.html", gulp.parallel(browserSync.reload));
 });
 
-gulp.task('goodbye',function(callback)
-{
-console.log("Bye, bye, from Gulp!")
-callback();
-});
-
-//gulp.task('default', gulp.series('hello','goodbye'));
-
-gulp.task('default', gulp.parallel('hello', 'goodbye'));
+gulp.task("default", gulp.parallel("server", "watch"));
