@@ -7,7 +7,7 @@ webpages = [
     "https://www.rzd.ru",
 ]
 
-interval = 10
+interval = 5
 
 def open_webpages(webpages, interval):
     for webpage in webpages:
